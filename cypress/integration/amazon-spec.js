@@ -3,8 +3,6 @@
 const excelFilePath = 'cypress/support/test-data/amazon_test_data.xlsx';
 const sheetName = 'credentials';
 
-// var us = '';
-
 describe('Amazon Scenario', () => {
     var us = '';
     before(() => {
@@ -23,12 +21,10 @@ describe('Amazon Scenario', () => {
         cy.task('generateJSON', { excelFilePath, sheetName }).then(
             (user) => {
                 cy.signIn(user[0].username, user[0].password)
-                us = user[0].username;
             })
     })
 
     it('Verify if Cart is Empty', () => {
-        cy.log({ us });
         cy.checkCart();
     })
 
